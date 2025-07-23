@@ -12,7 +12,14 @@ function App() {
 
   function createdPost(e) {
     e.preventDefault();
-
+    if (
+      !newPost.author.trim() ||
+      !newPost.title.trim() ||
+      !newPost.body.trim()
+    ) {
+      alert("Compila tutti i campi");
+      return;
+    }
     fetch(url, {
       method: "POST",
       headers: {
@@ -37,9 +44,7 @@ function App() {
             type="text"
             value={newPost.author}
             onChange={(e) => {
-              if (e.target.value.trim() !== "") {
-                setNewPost({ ...newPost, author: e.target.value }); //il trim() rimuove spazi iniziali e finali, quindi se il valore è solo un spazio vuoto non verrà aggiornato lo stato.
-              }
+              setNewPost({ ...newPost, author: e.target.value });
             }}
           />
 
@@ -50,9 +55,7 @@ function App() {
               type="text"
               value={newPost.title}
               onChange={(e) => {
-                if (e.target.value.trim() !== "") {
-                  setNewPost({ ...newPost, title: e.target.value }); //il trim() rimuove spazi iniziali e finali, quindi se il valore è solo un spazio vuoto non verrà aggiornato lo stato.
-                }
+                setNewPost({ ...newPost, title: e.target.value });
               }}
             />
           </div>
@@ -64,9 +67,7 @@ function App() {
               type="text"
               value={newPost.body}
               onChange={(e) => {
-                if (e.target.value.trim() !== "") {
-                  setNewPost({ ...newPost, body: e.target.value }); //il trim() rimuove spazi iniziali e finali, quindi se il valore è solo un spazio vuoto non verrà aggiornato lo stato.
-                }
+                setNewPost({ ...newPost, body: e.target.value });
               }}
             />
           </div>

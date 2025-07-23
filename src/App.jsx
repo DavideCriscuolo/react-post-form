@@ -31,6 +31,7 @@ function App() {
       .then((data) => {
         console.log(data);
         setNewPost({ author: "", title: "", body: "" });
+        alert("Inviato con sucesso");
         console.log(newPost);
       });
   }
